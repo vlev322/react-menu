@@ -80,7 +80,7 @@ const context = {
 
   onClick: item => {
     return e => {
-      e.stopPropogation();
+      e.stopPropagation();
       context.goTo(item);
     };
   },
