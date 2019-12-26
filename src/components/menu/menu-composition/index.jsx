@@ -10,7 +10,7 @@ export function Menu({ context }) {
   return (
     <ul>
       {items.map(item => (
-        <MenuItem item={item} onClick={cx.onClick(item)}>
+        <MenuItem key={item} item={item} onClick={cx.onClick(item)}>
           <SubMenu context={context} item={item} />
         </MenuItem>
       ))}
