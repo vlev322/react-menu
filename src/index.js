@@ -1,42 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-function MenuItem({ item, children, onClick }) {
-  return (
-    <li onClick={onClick}>
-      {item}
-      {children}
-    </li>
-  );
-}
-
-function SubMenu({ context, item }) {
-  const cx = context.getNavContext();
-  const items = cx.getMenu(item);
-
-  return (
-    <ul>
-      {items.map(item => (
-        <MenuItem item={item} onClick={cx.onClick(item)} />
-      ))}
-    </ul>
-  );
-}
-
-function Menu({ context }) {
-  const cx = context.getNavContext();
-  const items = cx.getMenu();
-
-  return (
-    <ul>
-      {items.map(item => (
-        <MenuItem item={item} onClick={cx.onClick(item)}>
-          <SubMenu context={context} item={item} />
-        </MenuItem>
-      ))}
-    </ul>
-  );
-}
+import { Menu } from "./components/menu";
+// import { context } from './components/menu/context'
 
 function Header({ context }) {
   return (
@@ -46,7 +12,7 @@ function Header({ context }) {
   );
 }
 
-function App({ context, dssdf }) {
+function App({ context }) {
   const cx = context.getNavContext();
 
   const [current, setCurrent] = useState(cx.current);
@@ -66,7 +32,7 @@ const menu = ["Home", "About", "Contact"];
 const subMenu = { About: ["first", "Second", "third"] };
 
 const context = {
-  current: 0,
+  current: menu[0],
   subscribe: fn => {
     list.push(fn);
   },
